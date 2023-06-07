@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Weather app
-//
-//  Created by Nataliia Shusta on 07/06/2023.
-//
-
 import UIKit
 
 @main
