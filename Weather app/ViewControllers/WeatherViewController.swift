@@ -3,9 +3,7 @@ import UIKit
 class WeatherViewController: UIViewController {
     
     private let weatherService = WeatherService()
-    
-    private let recentSearchMananger = RecentSearchManager()
-    
+
     private var weatherModel: WeatherModel? {
         didSet { updateUI() }
     }

@@ -10,7 +10,7 @@
 		79463E812A3A419B00BAE3A3 /* RecentSearch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79463E7F2A3A419B00BAE3A3 /* RecentSearch.xcdatamodeld */; };
 		79463E862A3A41FE00BAE3A3 /* RecentSearch+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79463E842A3A41FE00BAE3A3 /* RecentSearch+CoreDataClass.swift */; };
 		79463E872A3A41FE00BAE3A3 /* RecentSearch+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79463E852A3A41FE00BAE3A3 /* RecentSearch+CoreDataProperties.swift */; };
-		79463E8A2A3A437700BAE3A3 /* RecentSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79463E892A3A437700BAE3A3 /* RecentSearchManager.swift */; };
+		79463E8A2A3A437700BAE3A3 /* RecentSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79463E892A3A437700BAE3A3 /* RecentSearchService.swift */; };
 		79463E8C2A3A4F5F00BAE3A3 /* RecentSearchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79463E8B2A3A4F5F00BAE3A3 /* RecentSearchesViewController.swift */; };
 		79F2DB182A30A093004B5FBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F2DB172A30A093004B5FBC /* AppDelegate.swift */; };
 		79F2DB1A2A30A093004B5FBC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F2DB192A30A093004B5FBC /* SceneDelegate.swift */; };
@@ -25,7 +25,7 @@
 		79463E802A3A419B00BAE3A3 /* RecentSearch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecentSearch.xcdatamodel; sourceTree = "<group>"; };
 		79463E842A3A41FE00BAE3A3 /* RecentSearch+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentSearch+CoreDataClass.swift"; sourceTree = "<group>"; };
 		79463E852A3A41FE00BAE3A3 /* RecentSearch+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentSearch+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		79463E892A3A437700BAE3A3 /* RecentSearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchManager.swift; sourceTree = "<group>"; };
+		79463E892A3A437700BAE3A3 /* RecentSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchService.swift; sourceTree = "<group>"; };
 		79463E8B2A3A4F5F00BAE3A3 /* RecentSearchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchesViewController.swift; sourceTree = "<group>"; };
 		79F2DB142A30A093004B5FBC /* Weather app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		79F2DB172A30A093004B5FBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +59,44 @@
 			path = RecentSearch;
 			sourceTree = "<group>";
 		};
+		79463E8D2A3A61BF00BAE3A3 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				79F2DB1B2A30A093004B5FBC /* WeatherViewController.swift */,
+				79463E8B2A3A4F5F00BAE3A3 /* RecentSearchesViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		79463E8E2A3A61ED00BAE3A3 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				79F2DB192A30A093004B5FBC /* SceneDelegate.swift */,
+				79F2DB172A30A093004B5FBC /* AppDelegate.swift */,
+				79F2DB202A30A097004B5FBC /* Assets.xcassets */,
+				79F2DB222A30A097004B5FBC /* LaunchScreen.storyboard */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		79463E8F2A3A620E00BAE3A3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				79F2DB2D2A30A150004B5FBC /* WeatherService.swift */,
+				79463E892A3A437700BAE3A3 /* RecentSearchService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		79463E902A3A623F00BAE3A3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				79F2DB2B2A30A0B4004B5FBC /* WeatherModel.swift */,
+				79463E882A3A42F900BAE3A3 /* RecentSearch */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		79F2DB0B2A30A093004B5FBC = {
 			isa = PBXGroup;
 			children = (
@@ -78,16 +116,10 @@
 		79F2DB162A30A093004B5FBC /* Weather app */ = {
 			isa = PBXGroup;
 			children = (
-				79463E882A3A42F900BAE3A3 /* RecentSearch */,
-				79463E892A3A437700BAE3A3 /* RecentSearchManager.swift */,
-				79F2DB2D2A30A150004B5FBC /* WeatherService.swift */,
-				79F2DB2B2A30A0B4004B5FBC /* WeatherModel.swift */,
-				79F2DB172A30A093004B5FBC /* AppDelegate.swift */,
-				79F2DB192A30A093004B5FBC /* SceneDelegate.swift */,
-				79F2DB1B2A30A093004B5FBC /* WeatherViewController.swift */,
-				79463E8B2A3A4F5F00BAE3A3 /* RecentSearchesViewController.swift */,
-				79F2DB202A30A097004B5FBC /* Assets.xcassets */,
-				79F2DB222A30A097004B5FBC /* LaunchScreen.storyboard */,
+				79463E8E2A3A61ED00BAE3A3 /* Application */,
+				79463E902A3A623F00BAE3A3 /* Models */,
+				79463E8D2A3A61BF00BAE3A3 /* ViewControllers */,
+				79463E8F2A3A620E00BAE3A3 /* Services */,
 				79F2DB252A30A097004B5FBC /* Info.plist */,
 			);
 			path = "Weather app";
@@ -170,7 +202,7 @@
 				79F2DB2C2A30A0B4004B5FBC /* WeatherModel.swift in Sources */,
 				79463E8C2A3A4F5F00BAE3A3 /* RecentSearchesViewController.swift in Sources */,
 				79463E812A3A419B00BAE3A3 /* RecentSearch.xcdatamodeld in Sources */,
-				79463E8A2A3A437700BAE3A3 /* RecentSearchManager.swift in Sources */,
+				79463E8A2A3A437700BAE3A3 /* RecentSearchService.swift in Sources */,
 				79463E872A3A41FE00BAE3A3 /* RecentSearch+CoreDataProperties.swift in Sources */,
 				79F2DB1A2A30A093004B5FBC /* SceneDelegate.swift in Sources */,
 			);

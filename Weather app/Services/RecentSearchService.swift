@@ -1,7 +1,9 @@
 import Foundation
 import CoreData
 
-final class RecentSearchManager {
+final class RecentSearchService {
+    
+    static let shared = RecentSearchService()
     
     private let container: NSPersistentContainer
     
@@ -11,7 +13,7 @@ final class RecentSearchManager {
     
     //MARK: - Init
     
-    init() {
+    private init() {
         container = NSPersistentContainer(name: "RecentSearch")
         container.loadPersistentStores { description, error in
             if let error = error as NSError? {
