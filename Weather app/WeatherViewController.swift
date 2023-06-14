@@ -1,8 +1,10 @@
 import UIKit
 
-class ViewController: UIViewController {
+class WeatherViewController: UIViewController {
     
     private let weatherService = WeatherService()
+    
+    private let recentSearchMananger = RecentSearchManager()
     
     private var weatherModel: WeatherModel? {
         didSet { updateUI() }
@@ -50,12 +52,27 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        title = "WeatherApp"
         searchBar.delegate = self
+        setupSearchHistoryButton()
         setupViews()
         fetchData()
     }
     
     //MARK: - Private methods
+    
+    private func setupSearchHistoryButton() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: .init(systemName: "note.text"),
+            style: .plain,
+            target: self ,
+            action: #selector(didTapRecentSearches)
+        )
+    }
+    
+    @objc private func didTapRecentSearches() {
+        navigationController?.pushViewController(RecentSearchesViewController(), animated: true)
+    }
     
     private func fetchData(forCity city: String = "Kyiv") {
         weatherService.getWeather(forCity: city) { result in
@@ -117,11 +134,12 @@ class ViewController: UIViewController {
 
     //MARK: - SearchBar delegate methods
 
-extension ViewController: UISearchBarDelegate {
+extension WeatherViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let city = searchBar.text else { return }
         
+        searchBar.text = ""
         fetchData(forCity: city)
         searchBar.resignFirstResponder()
     }

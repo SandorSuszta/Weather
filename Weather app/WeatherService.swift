@@ -10,7 +10,6 @@ class WeatherService {
     
     private let key = "92138db50b8f29d7a4f86501eb7dfca6"
 
-    
     func getWeather(forCity city: String, completion: @escaping (Result<WeatherModel?, WeatherError>) -> Void) {
         
         let fullURL = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=92138db50b8f29d7a4f86501eb7dfca6&units=metric"
