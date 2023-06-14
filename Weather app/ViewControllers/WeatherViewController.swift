@@ -1,4 +1,5 @@
 import UIKit
+import CoreData
 
 class WeatherViewController: UIViewController {
     
@@ -69,7 +70,9 @@ class WeatherViewController: UIViewController {
     }
     
     @objc private func didTapRecentSearches() {
-        navigationController?.pushViewController(RecentSearchesViewController(), animated: true)
+        let vc = RecentSearchesViewController()
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func fetchData(forCity city: String = "Kyiv") {
@@ -137,6 +140,7 @@ extension WeatherViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let city = searchBar.text else { return }
         
+        RecentSearchService.shared.save(city)
         searchBar.text = ""
         fetchData(forCity: city)
         searchBar.resignFirstResponder()
@@ -145,5 +149,15 @@ extension WeatherViewController: UISearchBarDelegate {
     func searchBarShouldReturn(_ searchBar: UISearchBar) -> Bool {
         searchBar.resignFirstResponder()
         return true
+    }
+}
+
+    //MARK: - RecentSearchVC Delegate
+
+extension WeatherViewController: RecentSearchVCDelegate {
+    func didSelectCell(withQuery query: String) {
+        searchBar.text = ""
+        fetchData(forCity: query)
+        searchBar.resignFirstResponder()
     }
 }

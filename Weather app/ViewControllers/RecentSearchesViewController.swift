@@ -51,9 +51,14 @@ extension RecentSearchesViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        
+        cell.selectionStyle = .none
         cell.textLabel?.text = recentSearches[indexPath.row]
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigationController?.popViewController(animated: true)
+        delegate?.didSelectCell(withQuery: recentSearches[indexPath.row])
     }
 }

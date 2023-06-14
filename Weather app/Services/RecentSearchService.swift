@@ -25,6 +25,8 @@ final class RecentSearchService {
     //MARK: - API
     
     func save(_ query: String) {
+        let recentSearch = RecentSearch(context: context)
+        recentSearch.query = query
         
         if context.hasChanges {
             do {
@@ -37,11 +39,9 @@ final class RecentSearchService {
     
     func getRecentSearches() -> [String] {
         let fetchRequest = RecentSearch.fetchRequest()
-        fetchRequest.fetchLimit = 10
         
         do {
             let recentSearches = try context.fetch(fetchRequest)
-            
             return recentSearches.map { $0.query ?? "" }
         } catch {
             fatalError("Failed to fetch recent searches: \(error)")
