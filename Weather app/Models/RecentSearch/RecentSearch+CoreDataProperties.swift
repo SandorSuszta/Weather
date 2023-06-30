@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension RecentSearch {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<RecentSearch> {
@@ -20,6 +19,6 @@ extension RecentSearch {
 
 }
 
-extension RecentSearch : Identifiable {
+extension RecentSearch: Identifiable {
 
 }

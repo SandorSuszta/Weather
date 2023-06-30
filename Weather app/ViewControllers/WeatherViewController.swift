@@ -9,7 +9,7 @@ class WeatherViewController: UIViewController {
         didSet { updateUI() }
     }
     
-    //MARK: - UI Components
+    // MARK: - UI Components
     
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -45,8 +45,7 @@ class WeatherViewController: UIViewController {
         return imageView
     }()
     
-    
-    //MARK: - Lifecycle
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,23 +57,22 @@ class WeatherViewController: UIViewController {
         fetchData()
     }
     
-    //MARK: - Private methods
+    // MARK: - Private methods
     
     private func setupSearchHistoryButton() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: .init(systemName: "note.text"),
             style: .plain,
-            target: self ,
+            target: self,
             action: #selector(didTapRecentSearches)
         )
     }
     
     @objc private func didTapRecentSearches() {
-        let vc = RecentSearchesViewController()
-        vc.delegate = self
-        navigationController?.pushViewController(vc, animated: true)
+        let viewController = RecentSearchesViewController()
+        viewController.delegate = self
+        navigationController?.pushViewController(viewController, animated: true)
     }
-    
     private func fetchData(forCity city: String = "Kyiv") {
         weatherService.getWeather(forCity: city) { result in
             switch result {
@@ -91,40 +89,32 @@ class WeatherViewController: UIViewController {
             }
         }
     }
-    
     private func updateUI() {
         guard let model = weatherModel else { return }
-        
         DispatchQueue.main.async {
             self.cityLabel.text = model.name
             self.temperatureLabel.text = String(model.main.temperature) + "°C"
             self.descriptionLabel.text = model.weather[0].main
         }
     }
-    
     private func setupViews() {
         view.addSubview(searchBar)
         view.addSubview(cityLabel)
         view.addSubview(temperatureLabel)
         view.addSubview(descriptionLabel)
         view.addSubview(iconImageView)
-        
         NSLayoutConstraint.activate([
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            
             cityLabel.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 16),
             cityLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             cityLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            
             temperatureLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 8),
             temperatureLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            
             descriptionLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 8),
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            
             iconImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             iconImageView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
             iconImageView.widthAnchor.constraint(equalToConstant: 100),
@@ -133,26 +123,23 @@ class WeatherViewController: UIViewController {
     }
 }
 
-    //MARK: - SearchBar delegate methods
+    // MARK: - SearchBar delegate methods
 
 extension WeatherViewController: UISearchBarDelegate {
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let city = searchBar.text else { return }
-        
         RecentSearchService.shared.save(city)
         searchBar.text = ""
         fetchData(forCity: city)
         searchBar.resignFirstResponder()
     }
-    
     func searchBarShouldReturn(_ searchBar: UISearchBar) -> Bool {
         searchBar.resignFirstResponder()
         return true
     }
 }
 
-    //MARK: - RecentSearchVC Delegate
+    // MARK: - RecentSearchVC Delegate
 
 extension WeatherViewController: RecentSearchVCDelegate {
     func didSelectCell(withQuery query: String) {

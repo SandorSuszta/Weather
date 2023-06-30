@@ -13,7 +13,6 @@ struct Weather: Codable {
 
 struct Main: Codable {
     var temperature: Float
-    
     private enum CodingKeys: String, CodingKey {
         case temperature = "temp"
     }
