@@ -1,0 +1,10 @@
+excluded:
+  - Pods
+  - Carthage
+  - Build
+
+disabled_rules:
+  - trailing_whitespace
+
+opt_in_rules:
+  - trailing_comma
